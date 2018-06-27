@@ -221,6 +221,16 @@ RUN if [ ${INSTALL_SUBVERSION} = true ]; then \
     apt-get install -y subversion \
 ;fi
 
+###########################################################################
+# apcu:
+###########################################################################
+
+RUN pecl install apcu && \
+    pecl install apcu_bc \
+;fi
+
+COPY ./apcu.ini /etc/php/${PHP_VERSION}/cli/conf.d/apcu.ini
+COPY ./apcu.ini /etc/php/${PHP_VERSION}/mods-available/apcu.ini
 
 ###########################################################################
 # xDebug:
